@@ -1,2 +1,4 @@
-# a-pathfinding-maze-editor
-AI Course work where we were supposed to modify the code in a way that the only way you can move is by going straight or right. I also created an editor using python tkinter. In the editor you can create your own mazes.
+# a* pathfinding maze editor
+AI-based project focused on maze navigation using A*. Navigation is only allowed on straigth or right directions. The project includes a Python implementation that restricts the movement capabilities.
+
+Additionally, the repository features a custom maze editor built with Python's Tkinter library. The editor enables users to design and create their own mazes, providing a graphical interface for easy maze customization. The custom mazes can be solved by clicking the solve button. Try it out by running maze_editor.py!
