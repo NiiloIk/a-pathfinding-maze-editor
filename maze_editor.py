@@ -3,14 +3,17 @@ from tkinter import ttk
 import time
 from  A_Star import astar
 '''
-App that animates a maze with its solution.
-Also if you run this program it works as a maze editor with A* maze solving algo.
 
-Example of using this can be seen in a_star_with_maze_visualization.py.
+App that works as a maze editor. Running this program opens the maze editor. 
+In the editor you can create a maze by creating walls, starting point, and ending point. 
+When you have a maze built you can see the solution for it by pressing 'Solve' button. 
+
+
+Also this program can be opened to just show the solution for a solved maze (Go see maze_pathfinding.py for example).
 
 '''
 
-CELL_SIZE = 50
+CELL_SIZE = 30
 
 class MazeGrid:
     def __init__(self, canvas, maze, cell_size, editor):
@@ -27,6 +30,7 @@ class MazeGrid:
             self.showButtons()
 
     def draw_maze(self):
+        self.canvas.delete('all')
         for row in range(self.rows):
             for col in range(self.cols):
                 x1 = col * self.cell_size
@@ -62,11 +66,12 @@ class MazeGrid:
             start = None
             end = None
 
+            # Search for the start and end position and set them to 0's on the board.
             for cols in range(self.cols):
                 for rows in range(self.rows):
                     if self.maze[rows][cols] == 2:
                         start = (rows, cols)
-                        self.maze[rows][cols] = 0 # remove the start and end position by setting them to 0
+                        self.maze[rows][cols] = 0 
                     elif self.maze[rows][cols] == 3:
                         end = (rows, cols)
                         self.maze[rows][cols] = 0
@@ -74,6 +79,12 @@ class MazeGrid:
             path = astar(self.maze, start, end)
             if path:
                 self.draw_path(path)
+            else:
+                x = self.rows * self.cell_size // 2
+                y = self.rows * self.cell_size // 2
+
+                self.canvas.create_text(x, y, text="Path not found.", font=("Helvetica", 24), fill="red", anchor="center")
+
         def resetMaze():
             self.maze = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
             self.draw_maze()
@@ -131,9 +142,11 @@ def initMaze(maze, path=[], editor=False):
 
     '''
     root = tk.Tk()
+    title = "Maze Editor" if editor else "Maze visualization"
+    root.title(title)
 
     # Create canvas
-    editorWidth = 200 if editor else 0
+    editorWidth = 100 if editor else 0
     canvas = tk.Canvas(root, width=CELL_SIZE * len(maze[0]) + editorWidth, height=CELL_SIZE * len(maze))
 
     # Create the Maze

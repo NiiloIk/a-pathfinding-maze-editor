@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 
-This code is from https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2
-Except the Maze is now for the Labyrinth task for Tekniska Museet case
+A* pathfinding algorithm which has been modified to only allow moving in a straight line or turning right.
+
+This code is based off of https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2
 
 """
 
@@ -117,65 +118,3 @@ def astar(maze, start, end):
 
             # Add the child to the yet_to_visit list
             open_list.append(child)
-
-
-def main():
-    maze1 = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 1, 0, 1, 0 ,1, 1, 1, 0, 1, 1, 1, 0],
-            [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 1, 0, 1, 0 ,1, 1, 1, 1, 1, 0, 1, 0],
-            [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-            [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
-            [1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0],
-            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-            [1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0],
-            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1]]
-
-    start1 = (11, 10)
-    end1 = (11, 2)
-
-    maze2 = [[1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1],
-             [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-             [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1],
-             [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1],
-             [0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1],
-             [0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1],
-             [0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1],
-             [0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1],
-             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
-    
-    start2 = (0, 2)
-    end2 = (2, 12)
-
-    maze3 = [[1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
-             [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-             [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-             [0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1],
-             [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-             [0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1],
-             [0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1],
-             [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-             [1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1],
-             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1]]
-
-    start3 = (0, 2)
-    end3 = (9, 11)
-
-    # We define a reusable function.
-
-    def printPath(maze, start, end, name):
-        path = astar(maze, start, end) # Get the path using astar function
-        print(f"The path for maze {name}:\n{path}\n")
-
-    printPath(maze1, start1, end1, "1")
-    printPath(maze2, start2, end2, "2")
-    printPath(maze3, start3, end3, "3")
-
-if __name__ == '__main__':
-    main()
